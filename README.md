@@ -5,8 +5,26 @@ Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ 
 ---
 
 ## 📁 Cấu trúc dự án
-
-. ├── mnist_dataset/ │ ├── train/ # Ảnh train (từ MNIST) │ ├── test/ # Ảnh test (từ MNIST) │ ├── train_labels.csv # Nhãn train │ └── test_labels.csv # Nhãn test ├── A_Z Handwritten Data.csv # Dữ liệu chữ viết tay A-Z ├── model_char_digit_36class.h5 # Mô hình đã huấn luyện ├── predict_example.py # Script dự đoán ảnh mới ├── train_model.py # Script huấn luyện mô hình └── README.md
+```
+├── datas/
+│   ├── mnist_dataset/                   
+│   └── A_Z Handwritten Data.csv       
+│
+├── .venv/  
+│
+├── model/
+│	└── model_char_digit_36class.h5 
+│
+├── src/                   
+│   └── train.py
+│
+├── test/                   
+│   └── train.py
+│
+├── train_model.py            
+├── predict_example.py        
+├── requirements.txt           
+└── README.md              
 
 ---
 
