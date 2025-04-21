@@ -1,61 +1,66 @@
-# Handwritten
-Với Deep learning thì bài toán nhận diện chữ viết tay cũng không phải là quá mới mẻ, với data gồm 26 chữ cái trong Tiếng Anh trên [Kaggle](https://www.kaggle.com/sachinpatel21/az-handwritten-alphabets-in-csv-format) chúng ta hoàn toàn có thể xây dựng mô hình huấn luyện để nhận biết 26 class (tương ứng với 26 chữ cái). Ở trong project này mình sẽ thực hiện dự đoán chữ cái bằng cái viết trực tiếp với thư viện Gradio.
+# 🧠 Handwritten Character & Digit Recognition (0-9 + A-Z)
 
-<p align="center">
-	<img src="https://github.com/KudoKhang/Hand-Written/blob/main/imgTest/handwritten.gif?raw=true" />
-</p>
+Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ số viết tay (0–9, A–Z) bằng cách huấn luyện mô hình CNN trên dữ liệu kết hợp từ **MNIST** và **A-Z Handwritten Letters**.
 
-# How it work
-## Phần 1: Huấn luyện mô hình
-- Chi tiết huấn luyện từng bước ở [TrainingModel.ipynb](https://github.com/KudoKhang/Hand-Written/blob/main/TrainingModel.ipynb)
-## Phần 2: Thực hiện dự đoán
-Với [Gradio](https://gradio.app), nó cung cấp cho chúng ta cách để triển khai dự đoán các mô hình máy học một cách nhanh nhất và thuận tiện nhất.  Trong dự án này, với input là một chữ viết tay Gradio cung cấp cho chùng ta một phương thức là Sketchpad, giúp ta có vẽ chữ viết tay lên một cách rất thuận tiện.
+---
 
-<p align="center">
-	<img src="https://github.com/KudoKhang/Hand-Written/blob/main/imgTest/3.png?raw=true" />
-</p>
+## 📁 Cấu trúc dự án
 
-Đầu tiên chúng ta cần khai báo model mà chúng ta đã huấn luyện:
+. ├── mnist_dataset/ │ ├── train/ # Ảnh train (từ MNIST) │ ├── test/ # Ảnh test (từ MNIST) │ ├── train_labels.csv # Nhãn train │ └── test_labels.csv # Nhãn test ├── A_Z Handwritten Data.csv # Dữ liệu chữ viết tay A-Z ├── model_char_digit_36class.h5 # Mô hình đã huấn luyện ├── predict_example.py # Script dự đoán ảnh mới ├── train_model.py # Script huấn luyện mô hình └── README.md
 
-```python
-from tensorflow.keras.models import load_model
-word_dict = {0:'A',1:'B',2:'C',3:'D',4:'E',5:'F',6:'G',7:'H',8:'I',9:'J',10:'K',11:'L',12:'M',13:'N',14:'O',15:'P',16:'Q',17:'R',18:'S',19:'T',20:'U',21:'V',22:'W',23:'X', 24:'Y',25:'Z'}
-model = load_model('modelHandWritten.h5')
-```
+---
 
-Xử lý input và dự đoán kết quả:
+## 📚 Dữ liệu sử dụng
 
-```python
-def classify(img):
-	img_final = cv2.resize(img, (28, 28))
-	img_final = np.reshape(img_final, (1, 28, 28, 1))
-	prediction = model.predict(img_final).flatten()
-	return {word_dict[i]: float(prediction[i]) for i in range(25)}
-```
+- **MNIST**: tập dữ liệu ảnh số viết tay 0–9, ảnh 28x28, trắng đen.
+- **A-Z Handwritten Data**: CSV chứa ảnh viết tay chữ cái từ A đến Z (ảnh 28x28, 372.450 mẫu).
 
-Hiển thị lên:
+---
 
-```python
-iface = gr.Interface(
-	classify,
-	gr.inputs.Image(shape=(224, 224), image_mode='L', invert_colors=True, source="canvas"),
-	gr.outputs.Label(num_top_classes=3),
-	capture_session=True,
-	)
-```
+## 🏗️ Mô hình
 
-Nếu muốn nó tạo link để dự đoán online thì ta cần set `share=True`
+- **Kiến trúc**: CNN gồm 2 khối Conv2D + MaxPooling + Dropout → Dense.
+- **Số lớp đầu ra**: 36 lớp tương ứng với 0–9 và A–Z.
+- **Hàm mất mát**: categorical crossentropy.
+- **Đánh giá**: độ chính xác trên tập validation.
 
-```python
-if __name__ == "__main__":
-	iface.launch(share=True)
-```
+---
 
-# Usage
-Để sử dụng project:
+## 🧪 Cách chạy huấn luyện
+
+> Huấn luyện mô hình từ dữ liệu đã gộp:
+
 ```bash
-git clone https://github.com/KudoKhang/Hand-Written
-cd Hand-Written
-python aoo.py
-```
-Sau khi đã có thể nhận diện những chữ cái viết tay như vậy chúng ta có thể kết hợp với các kỹ thuật xử lý ảnh để xây dựng nên một ứng dụng như **"Scan & Chấm bài trắc nghiệm"**, **"Dự đoán chữ cái bằng cách dùng bút vẽ trước camera"**...
+python train_model.py
+
+🔍 Dự đoán ảnh mới
+Dự đoán ký tự từ ảnh PNG bất kỳ (ảnh trắng đen, 28x28 hoặc tự động resize):
+
+python predict_example.py --image path/to/image.png
+Ảnh đầu vào sẽ được:
+
+Chuyển về ảnh trắng đen.
+
+Resize về 28x28.
+
+Chuẩn hóa (normalize).
+
+Dự đoán và hiển thị kết quả bằng matplotlib.
+🔠 Mã hóa nhãn
+
+Label	Ký tự
+0–9	0–9
+10–35	A–Z
+📦 Yêu cầu
+pip install -r requirements.txt
+📌 Ghi chú
+Bạn cần đặt file A_Z Handwritten Data.csv và thư mục mnist_dataset cùng cấp với script.
+
+Model sau khi huấn luyện sẽ được lưu thành model_char_digit_36class.h5.
+🚀 Tác giả
+Dự án xây dựng bởi [Tên của bạn] – nhằm mục đích học tập và thử nghiệm AI nhận dạng ảnh.
+
+---
+
+Bạn muốn mình tạo luôn các file `train_model.py`, `predict_example.py` và `requirements.txt` tương ứng để bạn có thể chạy cả dự án như một project Python hoàn chỉnh không?
+
