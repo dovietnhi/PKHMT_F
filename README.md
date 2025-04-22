@@ -6,7 +6,6 @@ Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ 
 
 ## 📁 Cấu trúc dự án
 
-```bash
 
 ├── datas/
 │   ├── mnist_dataset/                   
@@ -28,58 +27,78 @@ Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ 
 ├── requirements.txt           
 └── README.md              
 
-```bash
+
+---
 
 ## 📚 Dữ liệu sử dụng
 
-- **MNIST**: tập dữ liệu ảnh số viết tay 0–9, ảnh 28x28, trắng đen.
-- **A-Z Handwritten Data**: CSV chứa ảnh viết tay chữ cái từ A đến Z (ảnh 28x28, 372.450 mẫu).
+- **MNIST**: Tập dữ liệu ảnh số viết tay từ 0–9, kích thước 28x28, ảnh đen trắng.
+- **A-Z Handwritten Data**: Dữ liệu chữ cái viết tay từ A đến Z, lưu ở dạng CSV, gồm **372.450** ảnh 28x28.
 
 ---
 
 ## 🏗️ Mô hình
 
-- **Kiến trúc**: CNN gồm 2 khối Conv2D + MaxPooling + Dropout → Dense.
-- **Số lớp đầu ra**: 36 lớp tương ứng với 0–9 và A–Z.
-- **Hàm mất mát**: categorical crossentropy.
-- **Đánh giá**: độ chính xác trên tập validation.
+- **Kiến trúc**: Mạng nơ-ron tích chập (CNN) gồm 2 khối `Conv2D + MaxPooling + Dropout` → `Flatten` → `Dense`.
+- **Số lớp đầu ra**: 36 lớp (0–9 và A–Z).
+- **Hàm mất mát**: `categorical_crossentropy`.
+- **Đánh giá**: Độ chính xác (`accuracy`) trên tập validation.
 
 ---
 
-## 🧪 Cách chạy huấn luyện
+## 🧪 Huấn luyện mô hình
 
-> Huấn luyện mô hình từ dữ liệu đã gộp:
-
+Chạy đoạn mã sau để huấn luyện:
 ```bash
 python train_model.py
 
-```
+
+Sau khi huấn luyện xong, mô hình sẽ được lưu tại:  
+📁 `model/model_char_digit_36class.h5`
+
+---
 
 ## 🔍 Dự đoán ảnh mới
-Dự đoán ký tự từ ảnh PNG bất kỳ (ảnh trắng đen, 28x28 hoặc tự động resize):
 
+Dự đoán ký tự viết tay từ ảnh PNG:
+```bash
 python predict_example.py --image path/to/image.png
-Ảnh đầu vào sẽ được:
 
-Chuyển về ảnh trắng đen.
 
-Resize về 28x28.
+Quy trình xử lý ảnh đầu vào:
 
-Chuẩn hóa (normalize).
+- Chuyển ảnh sang **đen trắng**.
+- Resize về **28x28**.
+- **Normalize** dữ liệu ảnh.
+- Dự đoán và hiển thị kết quả bằng `matplotlib`.
 
-Dự đoán và hiển thị kết quả bằng matplotlib.
-🔠 Mã hóa nhãn
+---
 
-Label	Ký tự
-0–9	0–9
-10–35	A–Z
-📦 Yêu cầu
+## 🔠 Mã hóa nhãn
+
+| Label | Ký tự |
+|-------|-------|
+| 0–9   | 0–9   |
+| 10–35 | A–Z   |
+
+---
+
+## 📦 Cài đặt yêu cầu
+
+Cài đặt thư viện cần thiết:
+```bash
 pip install -r requirements.txt
-📌 Ghi chú
-Bạn cần đặt file A_Z Handwritten Data.csv và thư mục mnist_dataset cùng cấp với script.
-
-Model sau khi huấn luyện sẽ được lưu thành model_char_digit_36class.h5.
-🚀 Tác giả
-Dự án xây dựng bởi [DoNhi] – nhằm mục đích học tập và thử nghiệm AI nhận dạng ảnh.
 
 
+---
+
+## 📌 Ghi chú
+
+- Hãy đảm bảo rằng file `A_Z Handwritten Data.csv` và thư mục `mnist_dataset` nằm cùng cấp với các script Python.
+- Dự án này chỉ xử lý ảnh **đơn ký tự**.
+
+---
+
+## 🚀 Tác giả
+
+Dự án được phát triển bởi **[DoNhi]** nhằm mục đích **học tập, thử nghiệm AI và thị giác máy tính (computer vision)**.
