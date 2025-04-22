@@ -5,7 +5,8 @@ Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ 
 ---
 
 ## 📁 Cấu trúc dự án
-```
+
+```bash
 
 ├── datas/
 │   ├── mnist_dataset/                   
