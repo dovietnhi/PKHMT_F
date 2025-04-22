@@ -1,11 +1,11 @@
 # 🧠 Handwritten Character & Digit Recognition (0-9 + A-Z)
 
-Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ số viết tay (0–9, A–Z) bằng cách huấn luyện mô hình CNN trên dữ liệu kết hợp từ **MNIST** và **A-Z Handwritten Letters**.
+Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ số viết tay (0–9, A–Z) bằng cách huấn luyện mô hình CNN trên dữ liệu kết hợp từ **MNIST** và **A-Z Handwritten Data**.
 
 ---
 
 ## 📁 Cấu trúc dự án
-```
+
 ├── datas/
 │   ├── mnist_dataset/                   
 │   └── A_Z Handwritten Data.csv       
@@ -76,9 +76,6 @@ Bạn cần đặt file A_Z Handwritten Data.csv và thư mục mnist_dataset c�
 
 Model sau khi huấn luyện sẽ được lưu thành model_char_digit_36class.h5.
 🚀 Tác giả
-Dự án xây dựng bởi [Tên của bạn] – nhằm mục đích học tập và thử nghiệm AI nhận dạng ảnh.
+Dự án xây dựng bởi [DoNhi] – nhằm mục đích học tập và thử nghiệm AI nhận dạng ảnh.
 
----
-
-Bạn muốn mình tạo luôn các file `train_model.py`, `predict_example.py` và `requirements.txt` tương ứng để bạn có thể chạy cả dự án như một project Python hoàn chỉnh không?
 
