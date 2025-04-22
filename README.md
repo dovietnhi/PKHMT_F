@@ -5,6 +5,7 @@ Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ 
 ---
 
 ## 📁 Cấu trúc dự án
+```
 
 ├── datas/
 │   ├── mnist_dataset/                   
@@ -51,7 +52,9 @@ Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ 
 ```bash
 python train_model.py
 
-🔍 Dự đoán ảnh mới
+```
+
+## 🔍 Dự đoán ảnh mới
 Dự đoán ký tự từ ảnh PNG bất kỳ (ảnh trắng đen, 28x28 hoặc tự động resize):
 
 python predict_example.py --image path/to/image.png
