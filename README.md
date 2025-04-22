@@ -28,7 +28,7 @@ Dự án này xây dựng một hệ thống nhận dạng chữ cái và chữ 
 ├── requirements.txt           
 └── README.md              
 
----
+```bash
 
 ## 📚 Dữ liệu sử dụng
 
