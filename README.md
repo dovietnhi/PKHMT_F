@@ -52,7 +52,7 @@ Chạy đoạn mã sau để huấn luyện:
 ```bash
 python train_model.py
 
-
+```
 Sau khi huấn luyện xong, mô hình sẽ được lưu tại:  
 📁 `model/model_char_digit_36class.h5`
 
@@ -63,7 +63,7 @@ Sau khi huấn luyện xong, mô hình sẽ được lưu tại:
 Dự đoán ký tự viết tay từ ảnh PNG:
 ```bash
 python predict_example.py --image path/to/image.png
-
+```
 
 Quy trình xử lý ảnh đầu vào:
 
@@ -88,7 +88,7 @@ Quy trình xử lý ảnh đầu vào:
 Cài đặt thư viện cần thiết:
 ```bash
 pip install -r requirements.txt
-
+```
 
 ---
 
@@ -101,4 +101,4 @@ pip install -r requirements.txt
 
 ## 🚀 Tác giả
 
-Dự án được phát triển bởi **[DoNhi]** nhằm mục đích **học tập, thử nghiệm AI và thị giác máy tính (computer vision).
+Dự án được phát triển bởi **[DoNhi]** nhằm mục đích **học tập, thử nghiệm AI và thị giác máy tính (computer vision)**.
