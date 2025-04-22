@@ -101,4 +101,4 @@ pip install -r requirements.txt
 
 ## 🚀 Tác giả
 
-Dự án được phát triển bởi **[DoNhi]** nhằm mục đích **học tập, thử nghiệm AI và thị giác máy tính (computer vision)**.
+Dự án được phát triển bởi **[DoNhi]** nhằm mục đích **học tập, thử nghiệm AI và thị giác máy tính (computer vision).
