@@ -1,0 +1,4 @@
+,Train Accuracy,Test Accuracy
+Basic CNN,98.66,98.4
+Deep CNN,98.91,98.58
+Mini ResNet,97.41,97.3

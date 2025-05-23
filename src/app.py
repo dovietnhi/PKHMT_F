@@ -6,7 +6,7 @@ from tensorflow.keras.models import load_model
 import time
 
 # Tải mô hình
-model = load_model(r'F:\DAKHMT\PKHMT_F\model\model_char_digit_36class.h5')
+model = load_model(r'F:\DAKHMT\PKHMT_F\src\best_deepcnn_model.h5')
 
 CANVAS_SIZE = 280
 IMG_SIZE = 28
@@ -15,7 +15,7 @@ CLASSES = [str(i) for i in range(10)] + [chr(i) for i in range(ord('A'), ord('Z'
 # Giao diện chính
 root = tk.Tk()
 root.title("✍️ Nhận dạng chữ viết tay")
-root.geometry("900x400")
+root.geometry("1100x400")
 root.configure(bg="white")
 
 # Canvas vẽ
@@ -40,13 +40,14 @@ processed_label.place(x=370, y=40, width=CANVAS_SIZE, height=CANVAS_SIZE)
 
 # Kết quả
 output_frame = tk.Frame(root, bg="white")
-output_frame.place(x=700, y=40, width=150, height=240)
+output_frame.place(x=700, y=40, width=350, height=240)
 
 output_text = tk.Label(output_frame, text="OUTPUT", font=("Helvetica", 12, "bold"), bg="white")
 output_text.grid(row=0, column=0, pady=5)
 
 pred_label = tk.Label(output_frame, text="", font=("Helvetica", 24, "bold"), fg="black", bg="white")
 pred_label.grid(row=1, column=0, pady=10)
+percent_label = tk.Label(output_frame, text="0%", font=("Helvetica", 10, "bold"), fg="blue", bg="white")
 
 # Thanh dự đoán và phần trăm
 bars = []
